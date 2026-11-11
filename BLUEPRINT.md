@@ -332,10 +332,13 @@ Panel admin dibangun menggunakan **Filament v3/v4** untuk menyediakan antarmuka 
 
 ### Sprint 4: Portal CMS & Informasi Publik
 
-- [ ] Pembuatan `ArticleResource`, `AnnouncementResource`, `GalleryResource`, `AchievementResource` di Filament.
-- [ ] Portal publik berbasis React Inertia (`/`, `/profil`, `/berita`, `/pengumuman`, `/galeri`):
-    - Tampilan beranda profil lembaga adaptif (sejarah, visi-misi, pimpinan, kontak).
-    - Tampilan daftar jurusan/peminatan (otomatis menyesuaikan jenjang yang diset di Filament).
+- [x] Pembuatan `ArticleResource`, `AnnouncementResource`, `GalleryResource`, `AchievementResource` di Filament.
+- [x] Portal publik berbasis React Inertia (`/`, `/profil`, `/berita`, `/pengumuman`, `/galeri`):
+    - [x] Tampilan beranda profil lembaga adaptif (sejarah, visi-misi, pimpinan, kontak).
+    - [x] Tampilan daftar jurusan/peminatan (otomatis menyesuaikan jenjang yang diset di Filament).
+    - [x] Indeks berita dengan filter kategori & halaman detail warta lengkap (`/berita`, `/berita/{slug}`).
+    - [x] Halaman pengumuman resmi & arsip surat edaran (`/pengumuman`).
+    - [x] Halaman dokumentasi galeri kegiatan & rekam jejak prestasi (`/galeri`).
 
 ### Sprint 5: Modul PPDB Daring Multi-Jalur
 

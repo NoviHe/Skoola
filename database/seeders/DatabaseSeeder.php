@@ -35,6 +35,10 @@ class DatabaseSeeder extends Seeder
             ScheduleSeeder::class,
             AttendanceSeeder::class,
             GradeSeeder::class,
+            ArticleSeeder::class,
+            AnnouncementSeeder::class,
+            GallerySeeder::class,
+            AchievementSeeder::class,
         ]);
     }
 }
