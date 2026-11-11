@@ -1,10 +1,9 @@
 name: tests
 
+# Dinonaktifkan dari trigger push/PR otomatis sesuai instruksi.
+# Hanya dapat dijalankan secara manual via GitHub Actions UI (workflow_dispatch).
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,24 +14,44 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.5'
+          php-version: '8.4'
+          extensions: mbstring, dom, fileinfo, intl, zip, pdo, sqlite, pdo_sqlite
           tools: composer:v2
           coverage: none
 
       - name: Setup Node
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
 
-      - name: Setup Application
-        run: composer setup
+      - name: Install Dependencies
+        run: |
+          composer install --no-interaction --prefer-dist
+          npm ci
+
+      - name: Prepare Environment
+        run: |
+          cp .env.example .env
+          touch database/database.sqlite
+          php artisan key:generate
+
+      - name: Run Migrations
+        run: php artisan migrate --force
+
+      - name: Build Frontend
+        run: npm run build
 
       - name: Run CI Checks
-        run: composer ci:check
+        run: |
+          npm run check
+          npm run types:check
+          vendor/bin/pint --test
+          php artisan test
