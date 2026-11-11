@@ -20,6 +20,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use UnitEnum;
 
 class InstitutionSettingResource extends Resource
@@ -37,6 +38,16 @@ class InstitutionSettingResource extends Resource
     protected static ?int $navigationSort = 1;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingLibrary;
+
+    public static function canCreate(): bool
+    {
+        return InstitutionSetting::count() === 0;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -122,6 +133,7 @@ class InstitutionSettingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->recordAction(EditAction::class)
             ->columns([
                 TextColumn::make('nama_institusi')
                     ->label('Nama Lembaga')

@@ -70,8 +70,8 @@ class InstitutionSettingTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/admin');
-
-        $response->assertSuccessful();
+        $this->actingAs($user)->get('/admin')->assertSuccessful();
+        $this->actingAs($user)->get('/admin/institution-settings')->assertSuccessful();
+        $this->actingAs($user)->get('/settings/profile')->assertSuccessful();
     }
 }
