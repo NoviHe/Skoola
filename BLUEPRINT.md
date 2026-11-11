@@ -323,11 +323,12 @@ Panel admin dibangun menggunakan **Filament v3/v4** untuk menyediakan antarmuka 
 
 ### Sprint 3: Modul Asesmen & Presensi via Filament
 
-- [ ] Migrasi `mata_pelajaran`, `jadwal_pelajaran`, `presensi_siswa`, `nilai_siswa`.
-- [ ] Pembuatan `SubjectResource` (pengelompokan mapel Nasional, Kemenag, Peminatan, Kejuruan, Mulok).
-- [ ] Pembuatan `AttendanceResource` (input presensi harian per kelas, badge kehadiran).
-- [ ] Pembuatan `GradeResource` (input nilai formatif/sumatif Kurikulum Merdeka & K13).
-- [ ] Fitur Cetak Rapor / Transkrip Hasil Belajar format PDF.
+- [x] Migrasi `mata_pelajaran`, `jadwal_pelajaran`, `presensi_siswa`, `nilai_siswa`.
+- [x] Pembuatan `SubjectResource` (pengelompokan mapel Nasional, Kemenag, Peminatan, Kejuruan, Mulok).
+- [x] Pembuatan `ScheduleResource` (jadwal KBM mingguan per kelas, alokasi guru & jam).
+- [x] Pembuatan `AttendanceResource` (input presensi harian per kelas, badge kehadiran).
+- [x] Pembuatan `GradeResource` (input nilai formatif/sumatif Kurikulum Merdeka & K13).
+- [x] Fitur Cetak Rapor / Transkrip Hasil Belajar format PDF / Pratinjau Modal Rapor.
 
 ### Sprint 4: Portal CMS & Informasi Publik
 
