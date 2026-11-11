@@ -1,5 +1,11 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
+import {
+    Building2,
+    CalendarDays,
+    Globe,
+    LayoutGrid,
+    ShieldCheck,
+} from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -18,22 +24,32 @@ import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Dashboard Ringkasan',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Panel Admin (Filament)',
+        href: '/admin',
+        icon: ShieldCheck,
+    },
+    {
+        title: 'Profil Lembaga',
+        href: '/admin/institution-settings',
+        icon: Building2,
+    },
+    {
+        title: 'Tahun Ajaran',
+        href: '/admin/academic-years',
+        icon: CalendarDays,
     },
 ];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: FolderGit2,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
+        title: 'Portal Depan',
+        href: '/',
+        icon: Globe,
     },
 ];
 
