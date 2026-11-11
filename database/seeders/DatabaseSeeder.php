@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             InstitutionSettingSeeder::class,
             AcademicYearSeeder::class,
+            MajorSeeder::class,
+            TeacherSeeder::class,
+            ClassroomSeeder::class,
+            StudentSeeder::class,
         ]);
     }
 }

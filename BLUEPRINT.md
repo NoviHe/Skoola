@@ -315,11 +315,11 @@ Panel admin dibangun menggunakan **Filament v3/v4** untuk menyediakan antarmuka 
 
 ### Sprint 2: Master Akademik via Filament Resources
 
-- [ ] Migrasi & Model `jurusan`, `kelas`, `guru`, `siswa` dengan relasi lengkap dan foreign key integrity.
-- [ ] Pembuatan `MajorResource` (hanya aktif jika jenjang menengah/kejuruan).
-- [ ] Pembuatan `ClassroomResource` (adaptif tingkat 1-6 untuk SD/MI, 7-9 untuk SMP/MTs, 10-12 untuk SMA/SMK/MA).
-- [ ] Pembuatan `TeacherResource` (form data diri, NIP/NUPTK/NPK, bidang studi).
-- [ ] Pembuatan `StudentResource` (form biodata lengkap, filter per kelas/tingkat, ekspor data, upload avatar).
+- [x] Migrasi & Model `jurusan`, `kelas`, `guru`, `siswa` dengan relasi lengkap dan foreign key integrity.
+- [x] Pembuatan `MajorResource` (hanya aktif jika jenjang menengah/kejuruan).
+- [x] Pembuatan `ClassroomResource` (adaptif tingkat 1-6 untuk SD/MI, 7-9 untuk SMP/MTs, 10-12 untuk SMA/SMK/MA).
+- [x] Pembuatan `TeacherResource` (form data diri, NIP/NUPTK/NPK, bidang studi).
+- [x] Pembuatan `StudentResource` (form biodata lengkap, filter per kelas/tingkat, ekspor data, upload avatar).
 
 ### Sprint 3: Modul Asesmen & Presensi via Filament
 
