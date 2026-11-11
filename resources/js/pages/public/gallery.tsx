@@ -1,5 +1,6 @@
 import PublicLayout from '@/layouts/public-layout';
 import { Head } from '@inertiajs/react';
+import { Trophy } from 'lucide-react';
 
 interface GalleryProps {
     institution: {
@@ -57,7 +58,7 @@ export default function GalleryPage({
                     {achievements.length > 0 && (
                         <div className="mt-12 rounded-3xl border border-zinc-200/80 bg-white p-6 shadow-sm sm:p-10 dark:border-zinc-800 dark:bg-zinc-900">
                             <div className="flex items-center gap-3 border-b border-zinc-100 pb-4 dark:border-zinc-800">
-                                <span className="text-2xl">&#127942;</span>
+                                <Trophy className="h-7 w-7 shrink-0 text-amber-500" />
                                 <div>
                                     <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
                                         Deretan Prestasi Siswa &amp; Lembaga

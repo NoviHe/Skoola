@@ -1,9 +1,19 @@
 import { Link, usePage } from '@inertiajs/react';
+import {
+    ArrowRight,
+    ExternalLink,
+    GraduationCap,
+    Mail,
+    MapPin,
+    Menu,
+    Phone,
+    ShieldCheck,
+    X,
+} from 'lucide-react';
 import { useState, type ReactNode } from 'react';
 
 interface PublicLayoutProps {
     children: ReactNode;
-    title?: string;
 }
 
 export default function PublicLayout({ children }: PublicLayoutProps) {
@@ -22,100 +32,103 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
         };
     }>();
 
-    const [mobileOpen, setMobileOpen] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const auth = props.auth;
     const inst = props.institution;
 
-    const navLinks = [
-        { name: 'Beranda', href: '/' },
-        { name: 'Profil', href: '/profil' },
-        { name: 'Warta & Berita', href: '/berita' },
-        { name: 'Pengumuman', href: '/pengumuman' },
-        { name: 'Galeri & Prestasi', href: '/galeri' },
+    const navItems = [
+        { label: 'Beranda', href: '/' },
+        { label: 'Profil Sekolah', href: '/profil' },
+        { label: 'Warta & Berita', href: '/berita' },
+        { label: 'Pengumuman', href: '/pengumuman' },
+        { label: 'Galeri & Prestasi', href: '/galeri' },
     ];
 
     return (
-        <div className="flex min-h-screen flex-col bg-zinc-50 font-sans text-zinc-900 selection:bg-indigo-500 selection:text-white dark:bg-zinc-950 dark:text-zinc-100">
-            {/* Top Bar with School Contact */}
-            <div className="border-b border-zinc-200 bg-white/70 px-4 py-1.5 text-xs text-zinc-600 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-400">
+        <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900 antialiased selection:bg-blue-600 selection:text-white dark:bg-slate-950 dark:text-slate-100">
+            {/* Top Bar for Institutional Contact and Quick Links */}
+            <header className="border-b border-slate-200/80 bg-slate-900 px-4 py-2 text-xs text-slate-300 dark:border-slate-800">
                 <div className="mx-auto flex max-w-7xl items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <span className="inline-flex items-center gap-1.5 font-medium text-indigo-600 dark:text-indigo-400">
-                            <span className="relative flex h-2 w-2">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                            </span>
-                            SIMAT Skoola Hub
+                    <div className="flex flex-wrap items-center gap-4 text-[11px] sm:text-xs">
+                        <span className="inline-flex items-center gap-1.5 font-medium text-emerald-400">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            SIMAT Skoola Resmi
                         </span>
                         {inst?.npsn && (
-                            <span className="hidden sm:inline-block">
+                            <span className="hidden items-center gap-1 text-slate-400 sm:inline-flex">
                                 NPSN:{' '}
-                                <strong className="font-semibold text-zinc-800 dark:text-zinc-200">
+                                <strong className="text-slate-200">
                                     {inst.npsn}
                                 </strong>
                             </span>
                         )}
-                        {inst?.kota && (
-                            <span className="hidden md:inline-block">
-                                {inst.kota}, {inst.provinsi}
+                        {inst?.telepon && (
+                            <span className="hidden items-center gap-1 text-slate-400 md:inline-flex">
+                                <Phone className="h-3 w-3 text-slate-400" />
+                                {inst.telepon}
+                            </span>
+                        )}
+                        {inst?.email && (
+                            <span className="hidden items-center gap-1 text-slate-400 lg:inline-flex">
+                                <Mail className="h-3 w-3 text-slate-400" />
+                                {inst.email}
                             </span>
                         )}
                     </div>
-                    <div className="flex items-center gap-4">
-                        {inst?.telepon && (
-                            <span className="hidden items-center gap-1 sm:inline-flex">
-                                Telp: {inst.telepon}
-                            </span>
-                        )}
+                    <div className="flex items-center gap-3">
                         <a
                             href="/admin"
-                            className="font-medium text-indigo-600 transition hover:text-indigo-700 hover:underline dark:text-indigo-400"
+                            className="inline-flex items-center gap-1 font-medium text-slate-300 transition hover:text-white"
                         >
-                            Portal Admin &rarr;
+                            <span>Panel Admin (Filament)</span>
+                            <ExternalLink className="h-3 w-3" />
                         </a>
                     </div>
                 </div>
-            </div>
+            </header>
 
-            {/* Main Navbar */}
-            <header className="sticky top-0 z-40 border-b border-zinc-200/80 bg-white/90 backdrop-blur-lg dark:border-zinc-800 dark:bg-zinc-900/90">
-                <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+            {/* Main Navigation Bar */}
+            <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/95">
+                <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+                    {/* Brand */}
                     <Link href="/" className="group flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white shadow-md shadow-indigo-500/20 transition-transform group-hover:scale-105">
-                            <span className="text-lg font-bold tracking-tight">
-                                {inst?.jenjang ?? 'SK'}
-                            </span>
+                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-md shadow-blue-500/20 transition group-hover:scale-105">
+                            <GraduationCap className="h-6 w-6" />
                         </div>
                         <div>
-                            <h1 className="text-base leading-tight font-bold tracking-tight text-zinc-900 group-hover:text-indigo-600 dark:text-white dark:group-hover:text-indigo-400">
-                                {inst?.nama_institusi ??
-                                    'Sistem Informasi Sekolah'}
-                            </h1>
-                            <p className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
-                                Jenjang {inst?.jenjang ?? 'Pendidikan'} Terpadu
+                            <div className="flex items-center gap-2">
+                                <span className="rounded bg-blue-50 px-1.5 py-0.5 text-[10px] font-bold text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+                                    {inst?.jenjang ?? 'SMK'}
+                                </span>
+                                <h1 className="text-base font-extrabold tracking-tight text-slate-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                                    {inst?.nama_institusi ?? 'Akademi Web'}
+                                </h1>
+                            </div>
+                            <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                                Sistem Informasi Manajemen Sekolah Terpadu
                             </p>
                         </div>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden items-center gap-1 md:flex">
-                        {navLinks.map((item) => (
+                    {/* Desktop Navigation Links */}
+                    <div className="hidden items-center gap-1 lg:flex">
+                        {navItems.map((item) => (
                             <Link
-                                key={item.name}
+                                key={item.label}
                                 href={item.href}
-                                className="rounded-lg px-3.5 py-2 text-sm font-medium text-zinc-600 transition hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
+                                className="rounded-lg px-3.5 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                             >
-                                {item.name}
+                                {item.label}
                             </Link>
                         ))}
-                    </nav>
+                    </div>
 
-                    {/* Auth / Action CTA */}
-                    <div className="hidden items-center gap-2.5 sm:flex">
+                    {/* Action / Auth Button */}
+                    <div className="hidden items-center gap-3 sm:flex">
                         {auth?.user ? (
                             <Link
                                 href="/dashboard"
-                                className="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-3.5 py-1.5 text-xs font-semibold text-zinc-700 shadow-sm transition hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+                                className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
                             >
                                 <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
                                 Dashboard ({auth.user.name})
@@ -123,54 +136,55 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
                         ) : (
                             <Link
                                 href="/login"
-                                className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-sm shadow-indigo-600/30 transition hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                                className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-xs font-bold text-white shadow-sm shadow-blue-600/30 transition hover:bg-blue-700 active:scale-95"
                             >
-                                Masuk Portal
+                                <span>Portal Siswa</span>
+                                <ArrowRight className="h-3.5 w-3.5" />
                             </Link>
                         )}
                     </div>
 
                     {/* Mobile Hamburger Button */}
                     <button
-                        onClick={() => setMobileOpen(!mobileOpen)}
                         type="button"
-                        className="inline-flex items-center justify-center rounded-lg p-2 text-zinc-600 hover:bg-zinc-100 md:hidden dark:text-zinc-300 dark:hover:bg-zinc-800"
-                        aria-label="Toggle menu"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        className="inline-flex items-center justify-center rounded-lg p-2 text-slate-600 hover:bg-slate-100 lg:hidden dark:text-slate-300 dark:hover:bg-slate-800"
+                        aria-label="Toggle Navigation"
                     >
-                        {mobileOpen ? (
-                            <span className="text-xl font-bold">&times;</span>
+                        {mobileMenuOpen ? (
+                            <X className="h-6 w-6" />
                         ) : (
-                            <span className="text-xl font-bold">&#9776;</span>
+                            <Menu className="h-6 w-6" />
                         )}
                     </button>
                 </div>
 
-                {/* Mobile Dropdown Menu */}
-                {mobileOpen && (
-                    <div className="border-b border-zinc-200 bg-white px-4 pt-2 pb-4 md:hidden dark:border-zinc-800 dark:bg-zinc-900">
-                        <div className="flex flex-col gap-1">
-                            {navLinks.map((item) => (
+                {/* Mobile Menu Dropdown */}
+                {mobileMenuOpen && (
+                    <div className="border-b border-slate-200 bg-white px-4 pt-2 pb-5 lg:hidden dark:border-slate-800 dark:bg-slate-900">
+                        <div className="flex flex-col gap-1.5">
+                            {navItems.map((item) => (
                                 <Link
-                                    key={item.name}
+                                    key={item.label}
                                     href={item.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="rounded-lg px-3.5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
                                 >
-                                    {item.name}
+                                    {item.label}
                                 </Link>
                             ))}
-                            <div className="mt-2 border-t border-zinc-200 pt-2 dark:border-zinc-800">
+                            <div className="mt-3 border-t border-slate-200 pt-3 dark:border-slate-800">
                                 {auth?.user ? (
                                     <Link
                                         href="/dashboard"
-                                        className="block rounded-lg bg-zinc-100 px-3 py-2 text-sm font-semibold text-zinc-800 dark:bg-zinc-800 dark:text-zinc-100"
+                                        className="block rounded-lg bg-slate-100 px-4 py-2.5 text-center text-sm font-bold text-slate-800 dark:bg-slate-800 dark:text-slate-100"
                                     >
-                                        Buka Dashboard
+                                        Buka Dashboard ({auth.user.name})
                                     </Link>
                                 ) : (
                                     <Link
                                         href="/login"
-                                        className="block rounded-lg bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white"
+                                        className="block rounded-lg bg-blue-600 px-4 py-2.5 text-center text-sm font-bold text-white shadow-sm hover:bg-blue-700"
                                     >
                                         Masuk Portal Siswa
                                     </Link>
@@ -179,51 +193,70 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
                         </div>
                     </div>
                 )}
-            </header>
+            </nav>
 
-            {/* Page Main Content */}
+            {/* Main Content */}
             <main className="flex-1">{children}</main>
 
-            {/* Modern School Footer */}
-            <footer className="border-t border-zinc-200 bg-white text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
-                <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16">
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-                        <div className="md:col-span-2">
+            {/* Institutional Footer */}
+            <footer className="border-t border-slate-200 bg-slate-900 text-slate-400 dark:border-slate-800">
+                <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+                    <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+                        {/* School Info */}
+                        <div className="space-y-4 md:col-span-2">
                             <div className="flex items-center gap-3">
-                                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 font-bold text-white">
-                                    {inst?.jenjang ?? 'SK'}
+                                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 font-bold text-white">
+                                    <GraduationCap className="h-6 w-6" />
                                 </div>
-                                <span className="text-base font-bold text-zinc-900 dark:text-white">
-                                    {inst?.nama_institusi ??
-                                        'Sekolah / Madrasah Terpadu'}
-                                </span>
+                                <div>
+                                    <h3 className="text-base font-extrabold text-white">
+                                        {inst?.nama_institusi ?? 'Akademi Web'}
+                                    </h3>
+                                    <p className="text-xs text-slate-400">
+                                        Jenjang {inst?.jenjang ?? 'SMK'} &bull;
+                                        SIMAT Skoola
+                                    </p>
+                                </div>
                             </div>
-                            <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+                            <p className="max-w-md text-sm leading-relaxed text-slate-400">
                                 {inst?.alamat ?? 'Jalan Raya Pendidikan No. 1'},{' '}
                                 {inst?.kota ?? ''} {inst?.provinsi ?? ''}.
-                                Sistem Informasi Manajemen Sekolah &amp;
-                                Madrasah Terpadu (SIMAT Skoola) berbasis
-                                multi-jenjang fleksibel.
+                                Institusi pendidikan yang berorientasi pada
+                                integritas, keunggulan akademis, penguasaan
+                                teknologi, dan kesiapan karir.
                             </p>
-                            <div className="mt-4 flex flex-col gap-1 text-xs text-zinc-500">
+                            <div className="flex flex-col gap-1.5 text-xs text-slate-300">
                                 {inst?.telepon && (
-                                    <span>Telepon: {inst.telepon}</span>
+                                    <span className="flex items-center gap-2">
+                                        <Phone className="h-3.5 w-3.5 text-blue-400" />
+                                        {inst.telepon}
+                                    </span>
                                 )}
                                 {inst?.email && (
-                                    <span>Email: {inst.email}</span>
+                                    <span className="flex items-center gap-2">
+                                        <Mail className="h-3.5 w-3.5 text-blue-400" />
+                                        {inst.email}
+                                    </span>
+                                )}
+                                {inst?.kota && (
+                                    <span className="flex items-center gap-2">
+                                        <MapPin className="h-3.5 w-3.5 text-blue-400" />
+                                        {inst.kota}, {inst.provinsi}
+                                    </span>
                                 )}
                             </div>
                         </div>
 
+                        {/* Navigation */}
                         <div>
-                            <h3 className="text-xs font-semibold tracking-wider text-zinc-900 uppercase dark:text-zinc-200">
-                                Navigasi Publik
-                            </h3>
-                            <ul className="mt-3 space-y-2 text-sm">
+                            <h4 className="text-xs font-bold tracking-wider text-white uppercase">
+                                Tautan Cepat
+                            </h4>
+                            <ul className="mt-4 space-y-2.5 text-sm">
                                 <li>
                                     <Link
                                         href="/"
-                                        className="hover:text-indigo-600 dark:hover:text-indigo-400"
+                                        className="transition hover:text-white"
                                     >
                                         Beranda
                                     </Link>
@@ -231,7 +264,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
                                 <li>
                                     <Link
                                         href="/profil"
-                                        className="hover:text-indigo-600 dark:hover:text-indigo-400"
+                                        className="transition hover:text-white"
                                     >
                                         Profil &amp; Visi Misi
                                     </Link>
@@ -239,15 +272,15 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
                                 <li>
                                     <Link
                                         href="/berita"
-                                        className="hover:text-indigo-600 dark:hover:text-indigo-400"
+                                        className="transition hover:text-white"
                                     >
-                                        Warta &amp; Berita
+                                        Warta Sekolah
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         href="/pengumuman"
-                                        className="hover:text-indigo-600 dark:hover:text-indigo-400"
+                                        className="transition hover:text-white"
                                     >
                                         Pengumuman
                                     </Link>
@@ -255,48 +288,56 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
                                 <li>
                                     <Link
                                         href="/galeri"
-                                        className="hover:text-indigo-600 dark:hover:text-indigo-400"
+                                        className="transition hover:text-white"
                                     >
-                                        Galeri Dokumentasi
+                                        Galeri &amp; Prestasi
                                     </Link>
                                 </li>
                             </ul>
                         </div>
 
+                        {/* Portals & Security */}
                         <div>
-                            <h3 className="text-xs font-semibold tracking-wider text-zinc-900 uppercase dark:text-zinc-200">
-                                Akses Terpadu
-                            </h3>
-                            <ul className="mt-3 space-y-2 text-sm">
+                            <h4 className="text-xs font-bold tracking-wider text-white uppercase">
+                                Layanan Terpadu
+                            </h4>
+                            <ul className="mt-4 space-y-2.5 text-sm">
                                 <li>
                                     <a
                                         href="/admin"
-                                        className="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+                                        className="inline-flex items-center gap-1 font-semibold text-blue-400 hover:text-blue-300"
                                     >
-                                        Panel Admin (Filament)
+                                        <span>Panel Admin Sekolah</span>
+                                        <ExternalLink className="h-3 w-3" />
                                     </a>
                                 </li>
                                 <li>
                                     <Link
                                         href="/login"
-                                        className="hover:text-indigo-600 dark:hover:text-indigo-400"
+                                        className="transition hover:text-white"
                                     >
-                                        Portal Siswa / Orang Tua
+                                        Portal Siswa &amp; Guru
                                     </Link>
                                 </li>
-                                <li>
-                                    <span className="inline-block rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400">
-                                        Jenjang: {inst?.jenjang ?? 'SMK'}
+                                <li className="pt-2">
+                                    <span className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs font-medium text-slate-300">
+                                        <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                                        Kurikulum Merdeka
                                     </span>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
-                    <div className="mt-12 border-t border-zinc-200 pt-6 text-center text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-                        &copy; {new Date().getFullYear()}{' '}
-                        {inst?.nama_institusi ?? 'Akademi Web'}. Hak Cipta
-                        Dilindungi Undang-Undang.
+                    <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row">
+                        <p>
+                            &copy; {new Date().getFullYear()}{' '}
+                            {inst?.nama_institusi ?? 'Sekolah'}. Seluruh hak
+                            cipta dilindungi.
+                        </p>
+                        <p className="flex items-center gap-1">
+                            Didukung oleh arsitektur SIMAT Skoola Terpadu
+                        </p>
                     </div>
                 </div>
             </footer>
