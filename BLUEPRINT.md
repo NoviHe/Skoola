@@ -342,13 +342,17 @@ Panel admin dibangun menggunakan **Filament v3/v4** untuk menyediakan antarmuka 
 
 ### Sprint 5: Modul PPDB Daring Multi-Jalur
 
-- [ ] Skema database `ppdb_gelombang` dan `ppdb_pendaftaran`.
-- [ ] `PpdbWaveResource` & `PpdbApplicantResource` di Filament:
-    - Tabel pendaftar dengan filter jalur & status verifikasi.
-    - Modal pratinjau berkas dokumen (Ijazah, KK, Akta) & aksi verifikasi satu klik.
-- [ ] Portal publik PPDB berbasis React Inertia:
-    - Formulir pendaftaran multi-step (`/ppdb/daftar`) dengan validasi NISN dan upload berkas.
-    - Halaman cek status pendaftaran mandiri (`/ppdb/cek-status`) & cetak bukti pendaftaran resmi.
+- [x] Skema database `ppdb_waves` (`ppdb_gelombang`) dan `ppdb_applicants` (`ppdb_pendaftaran`).
+- [x] `PpdbWaveResource` & `PpdbApplicantResource` di Filament:
+    - [x] Tabel pendaftar dengan filter jalur & status verifikasi.
+    - [x] Modal pratinjau berkas dokumen (Ijazah, KK, Akta, Rapor) & aksi verifikasi satu klik.
+    - [x] Ekspor data calon siswa pendaftar PPDB ke berkas CSV.
+- [x] Portal publik PPDB berbasis React Inertia:
+    - [x] Beranda portal PPDB (`/ppdb`) dengan ikhtisar gelombang aktif, kuota, dan panduan jalur.
+    - [x] Formulir pendaftaran multi-step (`/ppdb/daftar`) dengan validasi NISN/NIK dan upload berkas dokumen.
+    - [x] Halaman konfirmasi sukses pendaftaran (`/ppdb/sukses/{nomor}`).
+    - [x] Halaman cek status pendaftaran mandiri (`/ppdb/cek-status`).
+    - [x] Kartu tanda bukti pendaftaran resmi siap cetak (`/ppdb/cetak/{nomor}`).
 
 ---
 

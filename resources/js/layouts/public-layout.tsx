@@ -42,6 +42,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
         { label: 'Warta & Berita', href: '/berita' },
         { label: 'Pengumuman', href: '/pengumuman' },
         { label: 'Galeri & Prestasi', href: '/galeri' },
+        { label: 'PPDB Online', href: '/ppdb' },
     ];
 
     return (

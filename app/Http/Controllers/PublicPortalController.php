@@ -11,6 +11,7 @@ use App\Models\Classroom;
 use App\Models\Gallery;
 use App\Models\InstitutionSetting;
 use App\Models\Major;
+use App\Models\PpdbWave;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -41,6 +42,11 @@ class PublicPortalController extends Controller
             'announcements' => Announcement::query()->active()->latest('published_at')->take(4)->get(),
             'galleries' => Gallery::query()->latest()->take(6)->get(),
             'achievements' => Achievement::query()->latest()->take(3)->get(),
+            'openPpdbWave' => PpdbWave::query()
+                ->where('is_active', true)
+                ->whereDate('tanggal_buka', '<=', now()->toDateString())
+                ->whereDate('tanggal_tutup', '>=', now()->toDateString())
+                ->first() ?? PpdbWave::query()->where('is_active', true)->first(),
             'stats' => $stats,
         ]);
     }

@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
             AnnouncementSeeder::class,
             GallerySeeder::class,
             AchievementSeeder::class,
+            PpdbSeeder::class,
         ]);
     }
 }
